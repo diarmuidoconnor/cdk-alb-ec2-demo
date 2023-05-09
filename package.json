@@ -12,7 +12,7 @@
     "lint": "eslint . --ext js,jsx,ts,tsx --fix"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.20.0",
+    "aws-cdk-lib": "^2.71.0",
     "constructs": "^10.0.112",
     "source-map-support": "^0.5.21"
   },
