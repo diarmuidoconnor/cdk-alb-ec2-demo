@@ -14,5 +14,5 @@ npm run build
 export SEED_DB=true
 export SECRET=ilikecake
 export PORT=3000
-export MONGO_DB='mongodb+srv://admin:jEn2LBaVsIHle54d@doconnor-atlas-cluster.vddmf.mongodb.net/test?retryWrites=true&w=majority'
+export MONGO_DB='mongodb+srv://readuser:687flM1WOz@doconnor-atlas-cluster.vddmf.mongodb.net/test?retryWrites=true&w=majority'
 npm run start:prod
