@@ -92,3 +92,5 @@ env.ts
 cdk.context.json
 
 notes.md
+
+.DS_Store
