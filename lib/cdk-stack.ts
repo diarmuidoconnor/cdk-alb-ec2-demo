@@ -38,11 +38,11 @@ export class CdkStack extends Stack {
       allowAllOutbound: true,
     });
 
-    // serverSG.addIngressRule(
-    //   Peer.anyIpv4(),
-    //   Port.tcp(22),
-    //   'allow SSH access from anywhere',
-    // );
+    serverSG.addIngressRule(
+      Peer.anyIpv4(),
+      Port.tcp(22),
+      'allow SSH access from anywhere',
+    );
 
     const alb = new ApplicationLoadBalancer(this, 'alb', {
       vpc,
