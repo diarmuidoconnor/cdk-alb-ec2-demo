@@ -6,8 +6,8 @@ yum install -y ruby
 curl --silent --location https://rpm.nodesource.com/setup_16.x | bash
 yum -y install nodejs
 
-git clone https://github.com/diarmuidoconnor/moviesAPI-docker
-cd moviesAPI-docker
+git clone https://github.com/diarmuidoconnor/distributed-systems-express-moviesAPI
+cd distributed-systems-express-moviesAPI
 npm install
 npm run build
  
