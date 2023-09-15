@@ -26,11 +26,7 @@ export class CdkStack extends Stack {
     super(scope, id, props);
 
     const vpc = new Vpc(this, 'vpc', {
-      // cidr: '10.0.0.0/16',
       natGateways: 1,
-      // subnetConfiguration: [
-      //   {name: 'public', cidrMask: 24, subnetType: SubnetType.PUBLIC},
-      // ],
     });
 
     const serverSG = new SecurityGroup(this, 'webserver-sg', {
@@ -38,11 +34,11 @@ export class CdkStack extends Stack {
       allowAllOutbound: true,
     });
 
-    serverSG.addIngressRule(
-      Peer.anyIpv4(),
-      Port.tcp(22),
-      'allow SSH access from anywhere',
-    );
+    // serverSG.addIngressRule(
+    //   Peer.anyIpv4(),
+    //   Port.tcp(22),
+    //   'allow SSH access from anywhere',
+    // );
 
     const alb = new ApplicationLoadBalancer(this, 'alb', {
       vpc,
@@ -88,15 +84,6 @@ export class CdkStack extends Stack {
         healthyThresholdCount: 5,
         interval: Duration.seconds(30),
       },
-    });
-
-    listener.addAction('/static', {
-      priority: 5,
-      conditions: [ListenerCondition.pathPatterns(['/static'])],
-      action: ListenerAction.fixedResponse(200, {
-        contentType: 'text/html',
-        messageBody: '<h1>Static ALB Response</h1>',
-      }),
     });
 
     asg.scaleOnRequestCount('requests-per-minute', {
