@@ -6,8 +6,6 @@
   },
   "scripts": { },
   "dependencies": {
-    "aws-cdk-lib": "^2.71.0",
-    "constructs": "^10.0.112",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
@@ -16,6 +14,8 @@
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
     "aws-cdk": "^2.80.0",
+    "aws-cdk-lib": "^2.71.0",
+    "constructs": "^10.0.112",
     "esbuild": "^0.14.36",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
