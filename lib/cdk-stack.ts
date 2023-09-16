@@ -68,7 +68,6 @@ export class CdkStack extends Stack {
         generation: AmazonLinuxGeneration.AMAZON_LINUX_2,
       }),
       securityGroup: serverSG,
-      // keyName: 'ec2-key-pair',
       userData,
       minCapacity: 1,
       maxCapacity: 3,
