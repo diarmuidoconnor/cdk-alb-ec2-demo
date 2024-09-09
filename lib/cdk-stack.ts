@@ -13,7 +13,7 @@ import {
   Port,
 } from 'aws-cdk-lib/aws-ec2';
 import {App, CfnOutput, Duration, Stack, StackProps} from 'aws-cdk-lib';
-import {readFileSync} from 'fs';
+// import {readFileSync} from 'fs';
 import {
   ApplicationProtocol,
   ApplicationLoadBalancer,
@@ -50,10 +50,20 @@ export class CdkStack extends Stack {
       open: true,
     });
 
-    const userDataScript = readFileSync('./lib/user-data2.sh', 'utf8');
+    // const userDataScript = readFileSync('./lib/user-data2.sh', 'utf8');
 
-    const userData = UserData.forLinux()
-    userData.addCommands(userDataScript);
+    // const userData = UserData.forLinux()
+    // userData.addCommands(userDataScript);
+
+    const userData = UserData.forLinux();
+    userData.addCommands(
+      'sudo su',
+      'yum install -y httpd',
+      'systemctl start httpd',
+      'systemctl enable httpd',
+      'echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html',
+    );
+
 
     const asg = new AutoScalingGroup(this, 'asg', {
       vpc,
