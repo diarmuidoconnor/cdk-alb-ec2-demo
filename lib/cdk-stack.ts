@@ -50,7 +50,7 @@ export class CdkStack extends Stack {
       open: true,
     });
 
-    const userDataScript = readFileSync('./lib/user-data-API.sh', 'utf8');
+    const userDataScript = readFileSync('./lib/user-data2.sh', 'utf8');
 
     const userData = UserData.forLinux()
     userData.addCommands(userDataScript);
@@ -69,12 +69,12 @@ export class CdkStack extends Stack {
       }),
       securityGroup: serverSG,
       userData,
-      minCapacity: 1,
+      minCapacity: 2,
       maxCapacity: 3,
     });
 
     listener.addTargets('default-targets', {
-      port: 3000,
+      port: 80,
       protocol: ApplicationProtocol.HTTP,
       targets: [asg],
       healthCheck: {
