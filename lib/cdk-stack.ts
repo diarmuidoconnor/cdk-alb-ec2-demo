@@ -34,6 +34,11 @@ export class CdkStack extends Stack {
       allowAllOutbound: true,
     });
 
+    // serverSG.addIngressRule(
+    //   Peer.anyIpv4(),
+    //   Port.tcp(22),
+    //   'allow SSH access from anywhere',
+    // );
     const alb = new ApplicationLoadBalancer(this, 'alb', {
       vpc,
       internetFacing: true,
@@ -43,11 +48,6 @@ export class CdkStack extends Stack {
       port: 80,
       open: true,
     });
-
-    // const userDataScript = readFileSync('./lib/user-data2.sh', 'utf8');
-
-    // const userData = UserData.forLinux()
-    // userData.addCommands(userDataScript);
 
     const userData = UserData.forLinux();
     userData.addCommands(
