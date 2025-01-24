@@ -10,8 +10,8 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
-    "aws-cdk": "^2.156.0",
-    "aws-cdk-lib": "^2.156.0",
+    "aws-cdk": "^2.176.0",
+    "aws-cdk-lib": "^2.176.0",
     "constructs": "^10.0.112",
     "esbuild": "^0.14.36",
    "prettier": "^2.6.2",
