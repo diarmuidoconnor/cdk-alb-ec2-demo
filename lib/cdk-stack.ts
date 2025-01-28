@@ -5,6 +5,7 @@ import {
   SecurityGroup,
   UserData,
   InstanceClass,
+  LaunchTemplate,
   InstanceSize,
   AmazonLinuxImage,
   AmazonLinuxGeneration,
@@ -58,12 +59,7 @@ export class CdkStack extends Stack {
       'echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html',
     );
 
-
-    const asg = new AutoScalingGroup(this, 'asg', {
-      vpc,
-      vpcSubnets: {
-        subnetType: SubnetType.PRIVATE_WITH_EGRESS,
-      },
+    const launchTemplate = new LaunchTemplate(this,"ASGLaunchTemplate", {
       instanceType: InstanceType.of(
         InstanceClass.BURSTABLE2,
         InstanceSize.MICRO,
@@ -71,8 +67,16 @@ export class CdkStack extends Stack {
       machineImage: new AmazonLinuxImage({
         generation: AmazonLinuxGeneration.AMAZON_LINUX_2,
       }),
-      securityGroup: serverSG,
       userData,
+      securityGroup: serverSG
+    })
+
+    const asg = new AutoScalingGroup(this, 'asg', {
+      vpc,
+      vpcSubnets: {
+        subnetType: SubnetType.PRIVATE_WITH_EGRESS,
+      },
+      launchTemplate: launchTemplate,
       minCapacity: 2,
       maxCapacity: 3,
     });
