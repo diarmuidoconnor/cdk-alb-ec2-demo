@@ -6,14 +6,13 @@
   },
   "scripts": { },
   "dependencies": {
+    "aws-cdk-lib": "2.213.0",
+    "constructs": "^10.0.112",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
-    "aws-cdk": "^2.176.0",
-    "aws-cdk-lib": "^2.176.0",
-    "constructs": "^10.0.112",
-    "esbuild": "^0.14.36",
+    "aws-cdk": "2.1027.0",
    "prettier": "^2.6.2",
     "typescript": "^4.6.3"
   }
