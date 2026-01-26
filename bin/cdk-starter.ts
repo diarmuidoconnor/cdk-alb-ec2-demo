@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 import { App } from 'aws-cdk-lib';
-import {CdkStack} from '../lib/cdk-stack2';
+import {CdkStack} from '../lib/cdk-stack';
 
 const app = new App();
 new CdkStack(app, 'cdk-stack', {
   stackName: 'cdk-stack', 
     env: { account: '517039770760', region: 'eu-west-1' },
-
-  
- 
 });
