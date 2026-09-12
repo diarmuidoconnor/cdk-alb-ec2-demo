@@ -1,4 +1,8 @@
-import {AutoScalingGroup} from 'aws-cdk-lib/aws-autoscaling';
+import {
+  AutoScalingGroup,
+  AdditionalHealthCheckType,
+  HealthChecks,
+} from 'aws-cdk-lib/aws-autoscaling';
 import {
   Vpc,
   SubnetType,
@@ -79,7 +83,15 @@ export class CdkStack extends Stack {
       launchTemplate: launchTemplate,
       minCapacity: 2,
       maxCapacity: 3,
+      healthChecks: HealthChecks.withAdditionalChecks({
+        additionalTypes: [AdditionalHealthCheckType.ELB],
+        gracePeriod: Duration.seconds(60),
+      }),
     });
+
+    // Ensure instances aren't launched (and running user data) until the
+    // VPC's NAT Gateway is up, so outbound internet access is available.
+    asg.node.addDependency(vpc);
 
     listener.addTargets('default-targets', {
       port: 80,
